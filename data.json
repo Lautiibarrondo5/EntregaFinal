@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "nombre": "EA Sports FC 26",
+        "precio": 75000,
+        "categoria": "Deportes"
+    },
+    {
+        "id": 2,
+        "nombre": "Grand Theft Auto V",
+        "precio": 45000,
+        "categoria": "Acción"
+    },
+    {
+        "id": 3,
+        "nombre": "Minecraft",
+        "precio": 35000,
+        "categoria": "Aventura"
+    },
+    {
+        "id": 4,
+        "nombre": "F1 25",
+        "precio": 68000,
+        "categoria": "Carreras"
+    }
+]

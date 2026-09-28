@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Simulador de Videojuegos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>🎮 Mi Simulador de Videojuegos</h1>
+        <p>Agregá, buscá y eliminá videojuegos de tu colección.</p>
+    </header>
+
+    <main>
+
+        <section class="formulario">
+            <h2>Agregar videojuego</h2>
+
+            <form id="formulario-videojuego">
+
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input 
+                        type="text" 
+                        id="nombre" 
+                        placeholder="Ej: EA Sports FC 26"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="precio">Precio</label>
+                    <input 
+                        type="number" 
+                        id="precio" 
+                        placeholder="Ej: 75000"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoría</label>
+                    <input 
+                        type="text" 
+                        id="categoria" 
+                        placeholder="Ej: Deportes"
+                    >
+                </div>
+
+                <button type="submit">+ Agregar videojuego</button>
+
+            </form>
+
+            <p id="mensaje"></p>
+        </section>
+
+
+        <section class="buscador">
+            <h2>Buscar videojuegos</h2>
+
+            <input 
+                type="text" 
+                id="buscador" 
+                placeholder="Escribí el nombre de un videojuego..."
+            >
+        </section>
+
+
+        <section class="coleccion">
+            <h2>Mi colección</h2>
+
+            <div id="contenedor-videojuegos">
+                <!-- Los videojuegos se van a generar desde JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
