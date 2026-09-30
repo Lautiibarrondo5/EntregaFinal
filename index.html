@@ -1,86 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Simulador de Videojuegos</title>
+
+    <title>GameStore - Videojuegos</title>
+
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <link 
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
 
 <body>
 
     <header>
-        <h1>🎮 Mi Simulador de Videojuegos</h1>
-        <p>Agregá, buscá y eliminá videojuegos de tu colección.</p>
+        <div class="contenedor-header">
+
+            <div>
+                <h1>🎮 GameStore</h1>
+                <p>Encontrá tus videojuegos favoritos.</p>
+            </div>
+
+            <div class="resumen-carrito">
+                🛒 Carrito:
+                <span id="cantidad-carrito">0</span>
+            </div>
+
+        </div>
     </header>
 
     <main>
 
-        <section class="formulario">
-            <h2>Agregar videojuego</h2>
+        <!-- CATÁLOGO -->
+        <section class="catálogo">
 
-            <form id="formulario-videojuego">
+            <div class="titulo-seccion">
+                <h2>🎮 Catálogo de videojuegos</h2>
 
-                <div class="campo">
-                    <label for="nombre">Nombre</label>
-                    <input 
-                        type="text" 
-                        id="nombre" 
-                        placeholder="Ej: EA Sports FC 26"
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="precio">Precio</label>
-                    <input 
-                        type="number" 
-                        id="precio" 
-                        placeholder="Ej: 75000"
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="categoria">Categoría</label>
-                    <input 
-                        type="text" 
-                        id="categoria" 
-                        placeholder="Ej: Deportes"
-                    >
-                </div>
-
-                <button type="submit">+ Agregar videojuego</button>
-
-            </form>
-
-            <p id="mensaje"></p>
-        </section>
-
-
-        <section class="buscador">
-            <h2>Buscar videojuegos</h2>
-
-            <input 
-                type="text" 
-                id="buscador" 
-                placeholder="Escribí el nombre de un videojuego..."
-            >
-        </section>
-
-
-        <section class="coleccion">
-            <h2>Mi colección</h2>
-
-            <div id="contenedor-videojuegos">
-                <!-- Los videojuegos se van a generar desde JavaScript -->
+                <p>
+                    Elegí tus videojuegos y agregalos al carrito.
+                </p>
             </div>
+
+            <!-- BUSCADOR -->
+            <div class="buscador">
+
+                <label for="buscador">
+                    Buscar videojuego 
+                </label>
+
+                <input 
+                     type="text"
+                     id="buscador"
+                     placeholder="Escribí el nombre ded un videojuego..."
+                >
+
+            </div>
+
+            <!-- MENSAJE -->
+             <p id="mensaje"></p>
+
+             <!-- PRODUCTOS -->
+              <div id="contenedor-videojuegos">
+
+                <p>
+                    Cargando videojuegos... 
+                </p>
+
+              </div>
+
         </section>
 
+        <!-- CARRITO -->
+         <section class="carrito">
+
+            <div class="titulo-seccion">
+
+                <h2>🛒 Mi carrito</h2>
+
+                <p>
+                    Revisá tus productos antes de confirmar la compra.
+                </p>
+
+            </div>
+
+            <!-- PRODUCTOS DEL CARRITO -->
+             <div id="contenedor-carrito">
+
+                <p>
+                    Tu carrito está vacío.
+                </p>
+
+             </div>
+
+             <!-- RESUMEN -->
+              <div class="resumen-compra">
+
+                <div>
+                    <span>Subtotal:</span>
+
+                    <strong id="total-carrito">
+                        $0
+                    </strong>
+                </div>
+
+                <button
+                    type="button"
+                    id="btn-vaciar-carrito"
+                    >
+                    🗑️ Vaciar carrito 
+                </button>
+
+                <button
+                     type="button"
+                     id="btn-confirmar-compra"
+                     >
+                     ✅ Confirmar compra 
+                    </button>
+
+              </div>
+
+         </section>
     </main>
 
-    <script src="js/main.js"></script>
+    <footer>
 
+        <p>
+            🎮 GameStore - Proyecto Final
+        </p>
+
+    </footer>
+
+    <script
+         type="text/javascript"
+         src="https://cdn.jsdelivr.net/npm/toastify-js">
+    </script>
+
+    <script src="js/carrito.js"></script>
+
+    <script src="js/main.js"></script>
+    
 </body>
+
 </html>

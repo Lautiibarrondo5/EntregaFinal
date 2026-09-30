@@ -1,13 +1,10 @@
 let videojuegos = [];
 
 const contenedorVideojuegos = document.getElementById("contenedor-videojuegos");
-const formulario = document.getElementById("formulario-videojuego");
-const inputNombre = document.getElementById("nombre");
-const inputPrecio = document.getElementById("precio");
-const inputCategoria = document.getElementById("categoria");
 const buscador = document.getElementById("buscador");
 const mensaje = document.getElementById("mensaje");
 
+// Cargar videojuegos desde data.json
 async function cargarVideojuegos() {
 
     mensaje.textContent = "Cargando videojuegos...";
@@ -15,7 +12,7 @@ async function cargarVideojuegos() {
 
     try {
 
-        const respuesta = await fetch("./data.json");
+        const respuesta = await fetch("./data/data.json");
 
         if (!respuesta.ok) {
             throw new Error("No se pudieron obtener los videojuegos.");
@@ -25,7 +22,6 @@ async function cargarVideojuegos() {
 
         videojuegos = datos;
 
-        localStorage.setItem("videojuegos", JSON.stringify(videojuegos));
 
         renderizarVideojuegos(videojuegos);
 
@@ -48,129 +44,114 @@ async function cargarVideojuegos() {
             position: "right"
         }).showToast();
 
-        console.error("Error:", error);
-
     } finally {
 
-        console.log("Proceso de carga de videojuegos finalizado.");
+        setTimeout(() => {
+            mensaje.textContent = "";
+        },3000);
 
     }
 }
 
+// Mostrat videojuegos
 function renderizarVideojuegos(lista) {
 
-    contenedorVideojuegos.innerHTML = lista.length
-        ? ""
-        : "<p>No hay videojuegos para mostrar.</p>"  
+    if (lista.length === 0) {
+
+        contenedorVideojuegos.innerHTML = `
+            <p class="mensaje-vacio">
+                No se encontraron videojuegos.
+            </p>
+        `;
+
+        return;
+    }
+
+    contenedorVideojuegos.innerHTML = "";
 
     lista.forEach((videojuego) => {
 
-        const { id, nombre, precio, categoria } = videojuego;
+        const {
+            id,
+            nombre,
+            precio,
+            categoria,
+            imagen
+        } = videojuego;
 
         contenedorVideojuegos.innerHTML += `
             <article class="videojuego">
-                <div>
+
+                <img
+                    src="${imagen}"
+                    alt="Portada de ${nombre}"
+                >
+
+                <div class="info-videojuego">
+
                     <h3>${nombre}</h3>
-                    <p>Categoría: ${categoria}</p>
-                    <p class="precio">$${precio.toLocaleString("es-AR")}</p>
+
+                    <p>
+                        Categoría: ${categoria}
+                    </p>
+
+                    <p class="precio">
+                        $${precio.toLocaleString("es-AR")}
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn-agregar"
+                        data-id="${id}"
+                    >
+                        🛒 Agregar al carrito
+                    </button>
+
                 </div>
 
-                <button class="btn-eliminar" data-id="${id}">
-                    Eliminar
-                </button>
             </article>
         `;
     });
-
 }
 
-function eliminarVideojuego(id) {
-    const indice = videojuegos.findIndex((videojuego) => videojuego.id === id);
 
-    if (indice !== -1) {
-        videojuegos.splice(indice, 1);
-    }
-
-    localStorage.setItem("videojuegos", JSON.stringify(videojuegos));
-
-    renderizarVideojuegos(videojuegos);
-
-    Toastify({
-    text: "🗑️ Videojuego eliminado correctamente",
-    duration: 3000,
-    gravity: "top",
-    position: "right"
-}).showToast();
-}
-
+// Agregar producto al carrito
 contenedorVideojuegos.addEventListener("click", (evento) => {
-    if (evento.target.classList.contains("btn-eliminar")) {
+
+    if (evento.target.classList.contains("btn-agregar")) {
+
         const id = Number(evento.target.dataset.id);
 
-        eliminarVideojuego(id);
-    }
-});
+        const videojuego = videojuegos.find(
+            (producto) => producto.id === id
+        );
 
-// Cargamos los videojuegos desde data.json
-cargarVideojuegos();
-
-formulario.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-
-    try {
-        const nombre = inputNombre.value.trim();
-        const precio = Number(inputPrecio.value);
-        const categoria = inputCategoria.value.trim();
-
-        if (nombre === "" || precio <= 0 || categoria === "") {
-            mensaje.textContent = "Por favor, completá todos los campos correctamente.";
-            mensaje.className = "mensaje-error";
-            return;
+        if (videojuego) {
+            agregarProductoAlCarrito(videojuego);
         }
-
-        const nuevoVideojuego = {
-            id: Date.now(),
-            nombre: nombre,
-            precio: precio,
-            categoria: categoria
-        };
-
-        videojuegos.push(nuevoVideojuego);
-
-        localStorage.setItem("videojuegos", JSON.stringify(videojuegos));
-
-        renderizarVideojuegos(videojuegos);
-
-        mensaje.textContent = `"${nombre}" fue agregado correctamente.`;
-        mensaje.className = "mensaje-exito";
-
-        Toastify({
-            text: `🎮 "${nombre}" fue agregado correctamente`,
-            duration: 3000,
-            gravity: "top",
-            position: "right"
-        }).showToast();
-
-        formulario.reset();
-
-    } catch (error) {
-        mensaje.textContent = "⚠️ No se pudo agregar el videojuego. Intentá de nuevo.";
-        mensaje.className = "mensaje-error";
-
-        console.error("Error al agregar videojuego:", error);
-
-    } finally {
-        console.log("Proceso de agregar videojuego finalizado.");
     }
+
 });
 
 
+// Buscador
 buscador.addEventListener("input", () => {
-    const textoBuscado = buscador.value.toLowerCase().trim();
 
-    const videojuegosFiltrados = videojuegos.filter((videojuego) =>
-        videojuego.nombre.toLowerCase().includes(textoBuscado)
+    const textoBuscado = buscador.value
+        .toLowerCase()
+        .trim();
+
+    const videojuegosFiltrados = videojuegos.filter(
+        (videojuego) =>
+            videojuego.nombre
+                .toLowerCase()
+                .includes(textoBuscado)
     );
 
     renderizarVideojuegos(videojuegosFiltrados);
+
 });
+
+
+// Iniciar aplicación
+cargarVideojuegos();
