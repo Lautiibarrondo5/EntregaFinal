@@ -3,6 +3,10 @@ let videojuegos = [];
 const contenedorVideojuegos = document.getElementById("contenedor-videojuegos");
 const buscador = document.getElementById("buscador");
 const mensaje = document.getElementById("mensaje");
+const btnVerMas = document.getElementById("btn-ver-mas");
+
+let mostrarTodos = false;
+let videojuegosFiltrados = [];
 
 // Cargar videojuegos desde data.json
 async function cargarVideojuegos() {
@@ -12,7 +16,7 @@ async function cargarVideojuegos() {
 
     try {
 
-        const respuesta = await fetch("./data/data.json");
+        const respuesta = await fetch("./assets/data/data.json");
 
         if (!respuesta.ok) {
             throw new Error("No se pudieron obtener los videojuegos.");
@@ -53,8 +57,10 @@ async function cargarVideojuegos() {
     }
 }
 
-// Mostrat videojuegos
+// Mostrar videojuegos
 function renderizarVideojuegos(lista) {
+
+    videojuegosFiltrados = lista;
 
     if (lista.length === 0) {
 
@@ -64,12 +70,18 @@ function renderizarVideojuegos(lista) {
             </p>
         `;
 
+        btnVerMas.style.display = "none";
+
         return;
     }
 
+    const videojuegosVisibles = mostrarTodos
+        ? lista
+        : lista.slice(0, 4);
+
     contenedorVideojuegos.innerHTML = "";
 
-    lista.forEach((videojuego) => {
+    videojuegosVisibles.forEach((videojuego) => {
 
         const {
             id,
@@ -141,17 +153,28 @@ buscador.addEventListener("input", () => {
         .toLowerCase()
         .trim();
 
-    const videojuegosFiltrados = videojuegos.filter(
+    const resultados = videojuegos.filter(
         (videojuego) =>
             videojuego.nombre
                 .toLowerCase()
                 .includes(textoBuscado)
     );
 
-    renderizarVideojuegos(videojuegosFiltrados);
+    renderizarVideojuegos(resultados);
 
 });
 
+//mostrat mas o menos juegos
+btnVerMas.addEventListener("click", () => {
+
+    mostrarTodos = !mostrarTodos;
+
+    renderizarVideojuegos(videojuegosFiltrados);
+
+    btnVerMas.textContent = mostrarTodos
+        ? "Ver menos"
+        : "Ver más juegos";
+});
 
 // Iniciar aplicación
 cargarVideojuegos();

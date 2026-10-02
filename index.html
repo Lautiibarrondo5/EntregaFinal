@@ -57,7 +57,7 @@
                 <input 
                      type="text"
                      id="buscador"
-                     placeholder="Escribí el nombre ded un videojuego..."
+                     placeholder="Escribí el nombre de un videojuego..."
                 >
 
             </div>
@@ -73,6 +73,13 @@
                 </p>
 
               </div>
+
+              <button
+                   type="button"
+                   id="btn-ver-mas"
+              >
+                 Ver más juegos
+              </button>
 
         </section>
 
@@ -126,6 +133,88 @@
               </div>
 
          </section>
+
+         <!-- COMPROBANTE DE COMPRA -->
+          <section id="seccion-comprobante" class="comprobante" hidden>
+
+            <div class="titulo-seccion">
+                <h2> 🧾 Comprobante de compra</h2>
+                <p>Completá tus datos para general el comprobante.</p>
+            </div>
+
+            <form id="formulario-compra">
+
+                <div class="datos-cliente">
+
+                    <div>
+                        <label for="nombre-cliente">
+                            Nombre 
+                        </label>
+
+                        <input 
+                            type="text"
+                            id="nombre-cliente"
+                            required
+                            placeholder="Ingresá tu nombre"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="apellido-cliente">
+                            Apellido 
+                        </label>
+
+                        <input 
+                            type="text"
+                            id="apellido-cliente"
+                            required
+                            placeholder="Ingresá tu apellido"
+                        >
+                    </div>
+
+                </div>
+
+                <button 
+                     type="submit"
+                     id="btn-generar-comprobante"
+                >
+                     🧾 Generar comprobante
+                </button>
+
+            </form>
+
+            <div id="comprobante-generado"></div>
+
+          </section>
+    <!-- MIS COMPRAS -->
+          <section id="seccion-compras" class="mis-compras">
+
+            <div class="titulo-seccion">
+
+                <h2> 🧾 Mis compras</h2>
+
+                <p>
+                    Acá podés consultar las compras que realizaste.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="btn-limpiar-compras"
+            >
+                🗑️ Limpiar historial
+            </button>
+
+            <div id="contenedor-compras">
+
+                <p class="mensaje-vacio">
+                    Todavía no realizaste ninguna compra.
+                </p>
+
+            </div>
+
+          </section>
     </main>
 
     <footer>

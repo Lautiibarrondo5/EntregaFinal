@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "nombre": "EA Sports FC 26",
+        "precio": 75000,
+        "categoria": "Deportes",
+        "imagen": "/assets/skysports-eafc-bellingham-musiala_6966794.jpg"
+    },
+    {
+         "id": 2,
+        "nombre": "Grand Theft Auto V",
+        "precio": 45000,
+        "categoria": "Acción",
+        "imagen": "assets/GTA5.jpg"
+    },
+    {
+         "id": 3,
+        "nombre": "Minecraft",
+        "precio": 35000,
+        "categoria": "Aventura",
+        "imagen": "/assets/Minecraft.jpeg"
+    },
+    {
+         "id": 4,
+        "nombre": "F1 25",
+        "precio": 68000,
+        "categoria": "Carreras",
+        "imagen": "/assets/F1 25.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "Crash",
+        "precio": 25000,
+        "categoria": "Aventura",
+        "imagen": "/assets/crash.jpg"
+    },
+    {
+       "id": 6,
+        "nombre": "Forza-horizon 5",
+        "precio": 30000,
+        "categoria": "Carreras",
+        "imagen": "/assets/forza-horizon5.jpg" 
+    },
+    {
+        "id": 7,
+        "nombre": "God of war",
+        "precio": 45000,
+        "categoria": "Acción",
+        "imagen": "/assets/god of war.jpg"
+    },
+    {
+        "id": 8,
+        "nombre": "Rocket League",
+        "precio": 50000,
+        "categoria": "Acción",
+        "imagen": "/assets/rocket-league.jpg"
+    },
+    {
+        "id": 9,
+        "nombre": "Spider-Man 2",
+        "precio": 55000,
+        "categoria": "Acción",
+        "imagen": "/assets/spider-man 2.jpg"
+    },
+    {
+        "id": 10,
+        "nombre": "Warzone",
+        "precio": 80000,
+        "categoria": "Acción",
+        "imagen": "/assets/warzone.jpg"
+    }
+]
