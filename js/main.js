@@ -4,9 +4,16 @@ const contenedorVideojuegos = document.getElementById("contenedor-videojuegos");
 const buscador = document.getElementById("buscador");
 const mensaje = document.getElementById("mensaje");
 const btnVerMas = document.getElementById("btn-ver-mas");
+const botonesFiltro = document.querySelectorAll(".btn-filtro");
+
+const modalDetalles = document.getElementById("modal-detalles");
+const contenidoModalDetalles = document.getElementById("contenido-modal-detalles");
+const btnCerrarDetalles = document.getElementById("btn-cerrar-detalles");
+const contenedorOfertas = document.getElementById("contenedor-ofertas");
 
 let mostrarTodos = false;
 let videojuegosFiltrados = [];
+let plataformaSeleccionada = "Todas";
 
 // Cargar videojuegos desde data.json
 async function cargarVideojuegos() {
@@ -28,6 +35,7 @@ async function cargarVideojuegos() {
 
 
         renderizarVideojuegos(videojuegos);
+        renderizarOfertas();
 
         Toastify({
             text: "🎮 Videojuegos cargados con éxito",
@@ -55,6 +63,159 @@ async function cargarVideojuegos() {
         },3000);
 
     }
+}
+
+// Detalles de juegos
+function mostrarDetalles(id) {
+    
+    const videojuego = videojuegos.find(
+        (producto) => producto.id === id 
+    );
+
+    if (!videojuego) {
+        return;
+    }
+
+    const {
+        nombre,
+        precio,
+        categoria,
+        plataforma,
+        descripcion,
+        imagen,
+        oferta,
+        descuento
+    } = videojuego;
+
+    const precioFinal = oferta 
+       ? precio - (precio * descuento / 100)
+       : precio;
+
+    contenidoModalDetalles.innerHTML = `
+        <img
+            src="${imagen}"
+            alt="Portada de ${nombre}"
+            class="imagen-detalles"
+            >
+
+        <h2>${nombre}</h2>
+
+        <p>
+           <strong>Categoría:</strong> ${categoria}
+        </p>
+
+        <p>
+           <strong>Plataforma:</strong> ${plataforma}
+        </p>
+
+        <p>
+           <strong>Descripción:</strong>
+           ${descripcion}
+        </p>
+
+        ${
+            oferta
+                ? `
+                   <p class="precio-anterior">
+                   $${precio.toLocaleString("es-AR")}
+                   </p>
+
+                   <p class="precio">
+                    $${precioFinal.toLocaleString("es-AR")}
+                   </p>
+
+                   <span class="etiqueta-oferta>
+                        🔥 OFERTA -${descuento}$
+                   </span>
+                `
+                : `
+                   <p class="precio">
+                        $${precio.toLocaleString("es-AR")}
+                   </p>
+                `
+        }
+
+        <button
+             type="button"
+             class="btn-agregar"
+             data-id="${id}"
+        >
+           🛒 Agregar al carrito
+        </button>
+    `;
+
+    modalDetalles.hidden = false;
+}
+//Ofertas
+function renderizarOfertas() {
+
+    const ofertas = videojuegos.filter(
+        (videojuego) => videojuego.oferta === true 
+    );
+
+    contenedorOfertas.innerHTML = "";
+
+    ofertas.forEach((videojuego) => {
+
+        const{
+            id,
+            nombre,
+            precio,
+            categoria,
+            plataforma,
+            imagen,
+            descuento
+        } = videojuego;
+
+        const precioFinal = 
+            precio - (precio * descuento / 100);
+
+        contenedorOfertas.innerHTML += `
+             <article class="oferta-card">
+
+             <div class="oferta-imagen">
+               <img 
+                   src="${imagen}"
+                   alt="Portada de ${nombre}"
+                >
+
+                <span class="oferta-descuento">
+                        -${descuento}%
+                    </span>
+                </div>
+
+                <div class="oferta-info">
+
+                    <span class="oferta-plataforma">
+                        ${plataforma}
+                    </span>
+
+                    <h3>${nombre}</h3>
+
+                    <p>${categoria}</p>
+
+                    <span class="oferta-precio-anterior">
+                        $${precio.toLocaleString("es-AR")}
+                    </span>
+
+                    <strong class="oferta-precio">
+                        $${precioFinal.toLocaleString("es-AR")}
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="btn-agregar"
+                        data-id="${id}"
+                    >
+                        🛒 Aprovechar oferta
+                    </button>
+
+                </div>
+
+            </article>
+             
+        `;
+    });
 }
 
 // Mostrar videojuegos
@@ -88,8 +249,15 @@ function renderizarVideojuegos(lista) {
             nombre,
             precio,
             categoria,
-            imagen
+            plataforma,
+            imagen,
+            oferta,
+            descuento
         } = videojuego;
+
+        const precioFinal = oferta 
+            ? precio - (precio * descuento / 100)
+            : precio;
 
         contenedorVideojuegos.innerHTML += `
             <article class="videojuego">
@@ -107,9 +275,36 @@ function renderizarVideojuegos(lista) {
                         Categoría: ${categoria}
                     </p>
 
-                    <p class="precio">
-                        $${precio.toLocaleString("es-AR")}
-                    </p>
+                    ${oferta ? `
+                        <span class="etiqueta-oferta">
+                            🔥 OFERTA -${descuento}%
+                        </span>
+
+                        <p class="precio-anterior">
+                             $${precio.toLocaleString("es-AR")}
+                        </p>
+
+                        <p class="precio">
+                            $${precioFinal.toLocaleString("es-AR")}
+                        </p>
+                        ` : `
+                         <p class="precio">
+                              $${precioFinal.toLocaleString("es-AR")}
+                         </p>
+                    `} 
+
+                   <p>
+                     Plataforma: ${plataforma}
+                   </p>
+
+                   <button
+                       type="button"
+                       class="btn-detalles"
+                       data-id="${id}" 
+                    > 
+                    📋 Ver detalles 
+                   </button>
+                        
 
                     <button
                         type="button"
@@ -130,6 +325,15 @@ function renderizarVideojuegos(lista) {
 // Agregar producto al carrito
 contenedorVideojuegos.addEventListener("click", (evento) => {
 
+    if (evento.target.classList.contains("btn-detalles")) {
+
+        const id = Number(evento.target.dataset.id);
+
+        mostrarDetalles(id);
+
+        return;
+    }
+
     if (evento.target.classList.contains("btn-agregar")) {
 
         const id = Number(evento.target.dataset.id);
@@ -145,26 +349,68 @@ contenedorVideojuegos.addEventListener("click", (evento) => {
 
 });
 
+btnCerrarDetalles.addEventListener("click", () => {
+
+    modalDetalles.hidden = true;
+
+});
+
+modalDetalles.addEventListener("click", (evento) => {
+
+    if (evento.target === modalDetalles) {
+        modalDetalles.hidden = true;
+    }
+});
+
+
 
 // Buscador
-buscador.addEventListener("input", () => {
+function aplicarFiltros() {
 
     const textoBuscado = buscador.value
         .toLowerCase()
         .trim();
 
-    const resultados = videojuegos.filter(
-        (videojuego) =>
-            videojuego.nombre
-                .toLowerCase()
-                .includes(textoBuscado)
-    );
+    const resultados = videojuegos.filter((videojuego) => {
+
+        const coincideNombre = videojuego.nombre
+            .toLowerCase()
+            .includes(textoBuscado);
+
+        const coincidePlataforma =
+            plataformaSeleccionada === "Todas" ||
+            videojuego.plataforma === plataformaSeleccionada;
+
+        return coincideNombre && coincidePlataforma;
+    });
 
     renderizarVideojuegos(resultados);
+}
+
+buscador.addEventListener("input", aplicarFiltros);
+
+
+// Filtros de plataforma
+botonesFiltro.forEach((boton) => {
+
+    boton.addEventListener("click", () => {
+
+        plataformaSeleccionada = boton.dataset.plataforma;
+
+        botonesFiltro.forEach((btn) => {
+            btn.classList.remove("activo");
+        });
+
+        boton.classList.add("activo");
+
+        aplicarFiltros();
+    });
 
 });
 
-//mostrat mas o menos juegos
+    
+
+//mostrar mas o menos juegos
 btnVerMas.addEventListener("click", () => {
 
     mostrarTodos = !mostrarTodos;

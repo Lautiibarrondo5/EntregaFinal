@@ -4,34 +4,52 @@
         "nombre": "EA Sports FC 26",
         "precio": 75000,
         "categoria": "Deportes",
-        "imagen": "/assets/skysports-eafc-bellingham-musiala_6966794.jpg"
+        "plataforma":"PS4",
+        "descripcion": "Juega a tu manera con una experiencia de juego renovada impulsada por los comentarios de la comunidad, Desafíos en vivo de Mánager que aportan historias dinámicas a la nueva temporada, y Arquetipos inspirados en los Grandes del deporte.",
+        "imagen": "/assets/skysports-eafc-bellingham-musiala_6966794.jpg",
+        "oferta": true,
+        "descuento": 20
     },
     {
          "id": 2,
         "nombre": "Grand Theft Auto V",
         "precio": 45000,
         "categoria": "Acción",
-        "imagen": "assets/GTA5.jpg"
+        "plataforma": "PS4",
+        "descripcion": "Explorá Los Santos en una aventura de mundo abierto llena de acción, misiones y actividades.",
+        "imagen": "assets/GTA5.jpg",
+        "oferta": false,
+        "descuento": 0
     },
     {
          "id": 3,
         "nombre": "Minecraft",
         "precio": 35000,
         "categoria": "Aventura",
-        "imagen": "/assets/Minecraft.jpeg"
+        "plataforma":"PS3",
+        "descripcion":"Minecraft es un juego formado por bloques, criaturas y comunidades. La elección es tuya: sobrevivir a la noche o crear una obra de arte. Pero, si te abruma tener que explorar un nuevo y vasto mundo por tu cuenta, ¡no temas! ¡Vamos a explorar de qué va Minecraft!",
+        "imagen": "/assets/Minecraft.jpeg",
+        "oferta": true,
+        "descuento": 15
     },
     {
          "id": 4,
         "nombre": "F1 25",
         "precio": 68000,
         "categoria": "Carreras",
-        "imagen": "/assets/F1 25.jpg"
+        "plataforma":"PS4",
+        "descripcion": "Esta simulador de F1 te sentir como va un auto en la vida real, disfruta de todos los circuitos del mundo, con los mejores autos y pilotos.",
+        "imagen": "/assets/F1 25.jpg",
+        "oferta": false,
+        "descuento": 0
     },
     {
         "id": 5,
         "nombre": "Crash",
         "precio": 25000,
         "categoria": "Aventura",
+        "plataforma":"PS4",
+        "descripcion": "• Crash es un bandicoot marsupial que sufre una mutación genética por culpa del malvado científico Doctor Neo Cortex , • Crash logra escapar del laboratorio y emprende una aventura para detener los planos de dominación mundial de Cortex y rescatar a su novia Tawna",
         "imagen": "/assets/crash.jpg"
     },
     {
@@ -39,6 +57,8 @@
         "nombre": "Forza-horizon 5",
         "precio": 30000,
         "categoria": "Carreras",
+        "plataforma":"PS4",
+        "descripcion": "Presenta una campaña de aventura, expediciones, carreras de exhibición y eventos multijugador online mediante juego cruzado",
         "imagen": "/assets/forza-horizon5.jpg" 
     },
     {
@@ -46,6 +66,8 @@
         "nombre": "God of war",
         "precio": 45000,
         "categoria": "Acción",
+        "plataforma":"PS3",
+        "descripcion": "Kratos y Atreus emprenden un viaje por los nueve reinos mientras enfrentan nuevos desafios.",
         "imagen": "/assets/god of war.jpg"
     },
     {
@@ -53,6 +75,8 @@
         "nombre": "Rocket League",
         "precio": 50000,
         "categoria": "Acción",
+        "plataforma":"PS4",
+        "descripcion": "Rocket League es un videojuego de deportes de estilo arcade que mezcla el fútbol tradicional con la conducción de vehículos propulsados ​​por cohetes",
         "imagen": "/assets/rocket-league.jpg"
     },
     {
@@ -60,13 +84,73 @@
         "nombre": "Spider-Man 2",
         "precio": 55000,
         "categoria": "Acción",
-        "imagen": "/assets/spider-man 2.jpg"
+        "plataforma":"PS4",
+        "descripcion":" : Controlas a Peter Parker y Miles Morales , alternando entre ambos de forma rápida para vivir sus historias personales y combatir el crimen.Te enfrentas a Kraven el Cazador , quien convierte la ciudad en su coto de caza, al peligroso Lagarto (Lizard) y al monstruoso Venom , cuyo simbionte afecta negativamente a Peter",
+        "imagen": "/assets/spider-man 2.jpg",
+        "oferta": true,
+        "descuento": 50
     },
     {
         "id": 10,
         "nombre": "Warzone",
         "precio": 80000,
         "categoria": "Acción",
+        "plataforma":"PS5",
+        "descripcion":"es un videojuego de disparos en primera persona del género battle royale, de acceso gratuito y desarrollado por Activision",
         "imagen": "/assets/warzone.jpg"
+    },
+    {
+        "id": 11,
+        "nombre": "Dirt Rally",
+        "precio": 10000,
+        "categoria": "Deportes",
+        "plataforma":"PS3",
+        "descripcion":"es un videojuego de simulación de carreras desarrollado por Codemasters , enfocado en ofrecer una experiencia de manejo realista, técnica y muy exigente dentro del mundo del rally",
+        "imagen": "/assets/DIRTRALLY.jpg"
+    },
+    {
+        "id": 12,
+        "nombre": "FC 25",
+        "precio": 19000,
+        "categoria": "Deportes",
+        "plataforma":"PS4",
+        "descripcion":"Un nuevo modo de juego rápido de 5 contra 5 en canchas reducidas que reemplaza a Volta, disponible en Ultimate Team, Clubes y Carrera",
+        "imagen": "/assets/FC 25.jpg"
+    },
+    {
+        "id": 13,
+        "nombre": "Mortal Kombat 11 ",
+        "precio": 34000,
+        "categoria": "Acción",
+        "plataforma":"PS5",
+        "descripcion":" : Se centra en Kronika , la Guardiana del Tiempo, quien busca reiniciar la línea temporal para restablecer el equilibrio después de que Raiden alterara el destino en entregas anteriores",
+        "imagen": "/assets/Mortal Kombat 11.jpg"
+    },
+    {
+        "id": 14,
+        "nombre": "MXGP 26",
+        "precio": 63000,
+        "categoria": "Deportes",
+        "plataforma":"PS5",
+        "descripcion":"Juega como tus pilotos favoritos y compite en los 19 circuitos oficiales de la temporada en las categorías MXGP y MX2. Cada curva, cada salto y cada sección de la pista han sido recreados con una fidelidad sin precedentes para transportarte directamente al corazón de la temporada oficial.",
+        "imagen": "/assets/MXGP26.9bd90a9b-4be6-48e6-8d47-564e6f6e19f8"
+    },
+    {
+        "id": 15,
+        "nombre": "NBA 2K26",
+        "precio": 58000,
+        "categoria": "Deportes",
+        "plataforma":"PS5",
+        "descripcion":": Permite crear un MyPLAYER para vivir una historia de ascenso desde categorías formativas hasta la élite profesional.",
+        "imagen": "/assets/NBA 2K26.jpg"
+    },
+    {
+        "id": 16,
+        "nombre": "PES 2019",
+        "precio": 14000,
+        "categoria": "Deportes",
+        "plataforma":"PS3",
+        "descripcion":"Utiliza el motor FOX Engine junto con el software 'Enlighten' para lograr iluminación global en tiempo real, compatibilidad con resolución 4K HDR y un mayor detalle en el césped y los estadios",
+        "imagen": "/assets/PES2019.jpg"
     }
 ]

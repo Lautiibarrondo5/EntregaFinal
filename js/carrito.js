@@ -15,6 +15,43 @@ const comprobanteGenerado = document.getElementById("comprobante-generado");
 const contenedorCompras = document.getElementById("contenedor-compras");
 const btnLimpiarCompras = document.getElementById("btn-limpiar-compras");
 
+const metodoPago = document.getElementById("metodo-pago");
+const opcionesCuotas = document.getElementById("opciones-cuotas");
+const cuotas = document.getElementById("cuotas");
+const valorCuota = document.getElementById("valor-cuota");
+
+
+function actualizarCuotas() {
+
+    if (metodoPago.value === "Tarjeta de crédito") {
+
+        opcionesCuotas.hidden = false;
+
+        const cantidadCuotas = Number(cuotas.value);
+
+        const total = carrito.reduce(
+            (acumulado, producto) => 
+                acumulado + producto.precio * producto.cantidad,
+            0         
+        );
+
+        const valor = total / cantidadCuotas;
+
+        valorCuota.textContent =
+             `${cantidadCuotas} cuota${cantidadCuotas > 1 ? "s" : ""} de $${valor.toLocaleString("es-AR")}`;
+
+    } else {
+
+        opcionesCuotas.hidden = true;
+
+        valorCuota.textContent = "";
+    }
+}
+
+metodoPago.addEventListener("change", actualizarCuotas);
+
+cuotas.addEventListener("change", actualizarCuotas);
+
 
 // Guardar carrito en localStorage
 function guardarCarrito() {
@@ -92,7 +129,9 @@ function renderizarCarrito() {
             cantidad
         } = producto;
 
-        const textoUnidad = cantidad === 1 ? "unidad" : "unidades";
+        const textoUnidad = cantidad === 1
+            ? "unidad"
+            : "unidades";
 
 
         contenedorCarrito.innerHTML += `
@@ -117,7 +156,7 @@ function renderizarCarrito() {
                     </p>
 
                     <p>
-                    Cantidad: ${cantidad} ${textoUnidad}
+                        Cantidad: ${cantidad} ${textoUnidad}
                     </p>
 
                     <p class="subtotal">
@@ -198,6 +237,8 @@ function calcularTotal() {
 
 }
 
+
+// Mostrar mis compras
 function mostrarMisCompras() {
 
     const compras = JSON.parse(
@@ -206,12 +247,12 @@ function mostrarMisCompras() {
 
     if (compras.length === 0) {
 
-        contenedorCompras.innerHTML =  `
-           <p class="mensaje-vacio>
-               🧾 Todavía no realizaste ninguna compra.
-           </p>
+        contenedorCompras.innerHTML = `
+            <p class="mensaje-vacio">
+                🧾 Todavía no realizaste ninguna compra.
+            </p>
         `;
-        
+
         return;
     }
 
@@ -220,74 +261,79 @@ function mostrarMisCompras() {
     compras.forEach((compra) => {
 
         contenedorCompras.innerHTML += `
-        
-           <article class="compra">
+            <article class="compra">
 
-           <div class="encabezado-compra">
+                <div class="encabezado-compra">
 
-             <div>
-                 <h3>
-                    🧾 Compra realizada
-                 </h3>
+                    <div>
 
-                 <p>
-                    <strong>Cliente:</strong>
-                    ${compra.nombre}
-                 </p>
+                        <h3>
+                            🧾 Compra realizada
+                        </h3>
 
-                 <p>
-                    <strong>Fecha:</strong>
-                    ${compra.fecha}
-                 </p>
-              
-             </div>
+                        <p>
+                            <strong>Cliente:</strong>
+                            ${compra.cliente}
+                        </p>
 
-             <div class="total-compra">
+                        <p>
+                            <strong>Fecha:</strong>
+                            ${compra.fecha}
+                        </p>
 
-                  <span>Total</span>
+                    </div>
 
-                  <strong>
-                       ${compra.total.toLocaleString("es-AR")}
-                  </strong>
-             
-             </div>
-           
-           </div>
+                    <div class="total-compra">
 
-           <div class="productos-compra">
+                        <span>Total</span>
 
-           ${compra.productos.map((producto) => `
-            
-                <div class="producto-compra">
+                        <strong>
+                            $${compra.total.toLocaleString("es-AR")}
+                        </strong>
 
-                <div>
-                
-                    <strong>
-                        ${producto.nombre}
-                    </strong>
-
-                    <p>
-                       Cantidad:
-                       ${producto.cantidad}
-                    </p>
-
-                    <strong>
-                         $${producto.subtotal.toLocaleString("es-AR")}
-                    </strong>
+                    </div>
 
                 </div>
-            
-             `).join("")}  
 
-                
-           
-           </div>
-           
-           </article>
+
+                <div class="productos-compra">
+
+                    ${compra.productos.map((producto) => `
+                        
+                        <div class="producto-compra">
+
+                            <div>
+
+                                <strong>
+                                    ${producto.nombre}
+                                </strong>
+
+                                <p>
+                                    Cantidad:
+                                    ${producto.cantidad}
+                                </p>
+
+                                <strong>
+                                    $${producto.subtotal.toLocaleString("es-AR")}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    `).join("")}
+
+                </div>
+
+            </article>
         `;
+
     });
+
 }
 
+
+// Limpiar historial de compras
 btnLimpiarCompras.addEventListener("click", () => {
 
     const compras = JSON.parse(
@@ -467,119 +513,171 @@ btnConfirmarCompra.addEventListener("click", () => {
 
 });
 
+
 formularioCompra.addEventListener("submit", (evento) => {
 
     evento.preventDefault();
 
-    const nombre = document.getElementById("nombre-cliente").value.trim();
-    const apellido = document.getElementById("apellido-cliente").value.trim();
-    
-    const fechaCompra = new Date().toLocaleString("es-AR");
+    const nombre = document
+        .getElementById("nombre-cliente")
+        .value
+        .trim();
+
+    const apellido = document
+        .getElementById("apellido-cliente")
+        .value
+        .trim();
+
+    const metodoSeleccionado = metodoPago.value;
+
+    const cantidadCuotas = 
+        metodoSeleccionado === "Tarjeta de crédito"
+            ? Number(cuotas.value)
+            : 1;
+
+    const fechaCompra =
+        new Date().toLocaleString("es-AR");
+
 
     const total = carrito.reduce(
-        (acumulado, producto) => 
+        (acumulado, producto) =>
             acumulado + producto.precio * producto.cantidad,
         0
     );
+
 
     const productosComprobante = carrito.map((producto) => {
 
         const {
             nombre,
             precio,
-            cantidad 
+            cantidad
         } = producto;
 
         return {
             nombre,
             precio,
             cantidad,
-            subtotal: precio * cantidad 
+            subtotal: precio * cantidad
         };
 
     });
+
 
     const compra = {
         cliente: `${nombre} ${apellido}`,
         fecha: fechaCompra,
         productos: productosComprobante,
-        total 
+        total,
+        metodoPago: metodoSeleccionado,
+        cuotas: cantidadCuotas
     };
+
 
     const comprasGuardadas = JSON.parse(
         localStorage.getItem("compras")
     ) || [];
 
+
     comprasGuardadas.push(compra);
+
 
     localStorage.setItem(
         "compras",
         JSON.stringify(comprasGuardadas)
     );
 
+
     mostrarMisCompras();
 
+
     comprobanteGenerado.innerHTML = `
-        <div class="comprobante-contenido>
+        <div class="comprobante-contenido">
 
-          <h2>🎮 GameStore</h2>
+            <h2>🎮 GameStore</h2>
 
-          <h3>🧾 Comprobante de compra</h3>
+            <h3>🧾 Comprobante de compra</h3>
 
-          <div class="datos-comprobante>
-
-              <p>
-                <strong>Cliente:</strong>
-                ${nombre} ${apellido}
-              </p>
-
-              <p>
-                <strong>Fecha:</strong>
-                ${fechaCompra}
-              </p>
-
-          </div>
-
-          <div class="productos-comprobante>
-
-          ${productosComprobante.map((producto) => `
-            
-            <div class="producto-comprobante>
-
-            <div>
-                <strong>${producto.nombre}</strong>
+            <div class="datos-comprobante">
 
                 <p>
-                   Cantidad: ${producto.cantidad}
+                    <strong>Cliente:</strong>
+                    ${nombre} ${apellido}
                 </p>
 
                 <p>
-                Precio unitario: 
-                $${producto.precio.toLocaleString("es-AR")}
+                    <strong>Fecha:</strong>
+                    ${fechaCompra}
                 </p>
+
+                <p>
+                   <strong>Método de pago:</strong>
+                   ${metodoSeleccionado}
+                </p>
+
+                ${metodoSeleccionado === "Tarjeta de crédito" ? `
+                    <p>
+                       <strong>Cuotas:</strong>
+                       ${cantidadCuotas}
+                    </p>
+
+                    <p>
+                        <strong>Valor de cada cuota:</strong>
+                        $${(total / cantidadCuotas).toLocaleString("es-AR")}
+                    </p>
+                    `: ""}
+
             </div>
 
-            <strong>
-                 $${producto.subtotal.toLocaleString("es-AR")}
-            </strong>
+
+            <div class="productos-comprobante">
+
+                ${productosComprobante.map((producto) => `
+                    
+                    <div class="producto-comprobante">
+
+                        <div>
+
+                            <strong>
+                                ${producto.nombre}
+                            </strong>
+
+                            <p>
+                                Cantidad:
+                                ${producto.cantidad}
+                            </p>
+
+                            <p>
+                                Precio unitario:
+                                $${producto.precio.toLocaleString("es-AR")}
+                            </p>
+
+                        </div>
+
+                        <strong>
+                            $${producto.subtotal.toLocaleString("es-AR")}
+                        </strong>
+
+                    </div>
+
+                `).join("")}
 
             </div>
-            `).join("")}
-          
-          </div>
 
-          <div class="total-comprobante>
 
-             <span>Total:</span>
+            <div class="total-comprobante">
 
-             <strong>
-                 $${total.toLocaleString("es-AR")}
-             </strong>
-          
-          </div>
+                <span>Total:</span>
+
+                <strong>
+                    $${total.toLocaleString("es-AR")}
+                </strong>
+
+            </div>
 
         </div>
     `;
+
 
     carrito = [];
 
@@ -587,6 +685,7 @@ formularioCompra.addEventListener("submit", (evento) => {
     renderizarCarrito();
 
     formularioCompra.reset();
+
 
     Toastify({
         text: `✅ Compra confirmada por $${total.toLocaleString("es-AR")}`,
@@ -597,6 +696,7 @@ formularioCompra.addEventListener("submit", (evento) => {
 
 });
 
-// Mostrar el carrito al cargar la página
+
+// Mostrar el carrito y las compras al cargar
 renderizarCarrito();
 mostrarMisCompras();
