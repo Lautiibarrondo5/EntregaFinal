@@ -37,10 +37,36 @@ header p {
 }
 
 .resumen-carrito {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 20px;
+    right: 25px;
+
     background-color: #2d6a4f;
+    color: white;
+
     padding: 12px 18px;
+
     border-radius: 10px;
+
     font-weight: bold;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition: 0.2s ease;
+}
+
+.resumen-carrito:hover {
+    background-color: #40916c;
+    transform: translateY(-2px);
 }
 
 main {
@@ -657,6 +683,25 @@ footer {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .logo-header {
+        min-height: 180px;
+    }
+
+    .contenido-logo h1 {
+        font-size: 2.2rem;
+    }
+
+    .contenido-logo p {
+        font-size: 0.9rem;
+    }
+
+    .logo-header .resumen-carrito {
+        top: 12px;
+        right: 12px;
+        padding: 9px 12px;
+        font-size: 0.85rem;
+    }
  }
 
  #btn-limpiar-compras {
@@ -955,64 +1000,109 @@ footer {
 }
 
 /*LOGO*/
-.logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    color: #12372a;
-    text-decoration: none;
-
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-
-    transition: all 0.25s ease;
+header {
+    background-color: #151515;
+    color: white;
+    padding: 0;
 }
 
-.logo::before {
-    content: "🎮";
+.contenedor-header {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.logo-header {
+    position: relative;
+
+    width: 100%;
+    min-height: 220px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 1.6rem;
-
-    transition: transform 0.25s ease;
-}
-
-.logo:hover {
-    color: #2d6a4f;
-    transform: translateY(-1px);
-}
-
-.logo:hover::before {
-    transform: rotate(.8deg) scale(1.1);
-}
-
-.logo-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    overflow: hidden;
 }
 
 .logo-header img {
-    width: 200px;
-    height: 200px;
+    position: absolute;
 
-    object-fit: contain;
+    inset: 0;
 
-    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
 
     display: block;
 }
 
-.logo-header p {
+.logo-header::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    z-index: 1;
+}
+
+.contenido-logo {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: white;
+}
+
+.contenido-logo h1 {
     margin: 0;
 
-    font-size: 0.9rem;
-    color: #555;
+    font-size: 3rem;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.contenido-logo p {
+    margin: 5px 0 0;
+
+    color: white;
+
+    font-size: 1.1rem;
+
+    font-weight: 500;
+
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.logo-header .resumen-carrito {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 20px;
+    right: 25px;
+
+    background-color: #2d6a4f;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .videojuego {
@@ -1180,3 +1270,377 @@ footer {
 .oferta-info .btn-agregar {
     width: 100%;
 }
+
+/*Métodos de pago*/
+
+.datos-pago {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.metodo-pago-contenedor {
+    width: 100%;
+}
+
+.metodo-pago-contenedor label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #12372a;
+}
+
+.metodo-pago-contenedor select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 2px solid #d9e2dc;
+    border-radius: 10px;
+    background-color: white;
+    color: #222;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.metodo-pago-contenedor section:focus {
+    border-color: #40916c;
+    box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.12);
+}
+
+/*Datos tarjeta*/
+
+.datos-tarjeta {
+    margin-top: 20px;
+    padding: 25px;
+
+    background: linear-gradient(
+        135deg,
+        #f0fff7,
+        #e7f7ef 
+    );
+
+    border: 2px solid #b7dfc8;
+    border-radius: 16px;
+
+    box-shadow: 0 6px 18px rgba(45, 106, 79, 0.10);
+}
+
+.encabezado-pago {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 25px;
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #c9e3d3;
+}
+
+.icono-pago {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #2d6a4f,
+        #40916c 
+    );
+
+    color: white;
+    font-size: 1.5rem;
+
+    box-shadow: 0 5px 12px rgba(45, 106, 79, 0.25);
+}
+
+.encabezado-pago h3 {
+    margin: 0 0 3px;
+    color: #12372a;
+    font-size: 1.2rem;
+}
+
+.encabezado-pago p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.tarjeta-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.campo-tarjeta {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-tarjeta label {
+    margin-bottom: 7px;
+
+    color: #12372a;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.campo-tarjeta input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 2px solid #d3e3d9;
+    border-radius: 10px;
+
+    background-color: white;
+
+    color: #222;
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+.campo-tarjeta input::placeholder {
+    color: #aaa;
+}
+
+.campo-tarjeta input:focus {
+    border-color: #40916c;
+
+    box-shadow: 
+        0 0 0 3px rgba(64, 145, 108, 0.12);
+
+    transform: translateY(-1px);
+}
+
+.aviso-seguridad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 20px;
+    padding: 12px 15px;
+
+    background-color: #fff8dc;
+
+    border: 9px;
+
+    color: #735c00;
+
+    font-size: 0.85rem;
+}
+
+.mensaje-pago {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 20px;
+    padding: 20px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.06);
+}
+
+.icono-mensaje {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 1.5rem;
+}
+
+.transferencia {
+    background: linear-gradient(
+        135deg,
+        #eef6ff,
+        #e3f0ff 
+    );
+
+    border: 2px solid #b9d5f5;
+}
+
+.transferencia .icono-mensaje {
+    background-color: #2878c8;
+    color: white;
+}
+
+.transferencia h3 {
+    color: #1e5c96;
+    margin-bottom: 5px;
+}
+
+.transferencia p {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.transferencia strong {
+    color: #1e5c96;
+}
+
+.efectivo {
+    background: linear-gradient(
+        135deg,
+        #fffbea,
+        #fff5cc 
+    );
+
+    border: 2px solid #f0d979;
+}
+
+.efectivo .icono-mensaje {
+    background-color: #d4a017;
+    color: white;
+}
+
+.efectivo h3 {
+    color: #856404;
+    margin-bottom: 4px;
+}
+
+.efectivo p {
+    color: #665d40;
+}
+
+.opciones-cuotas {
+    margin-top: 20px;
+    padding: 20px;
+
+    background-color: #f8f4ff;
+
+    border: 2px solid #d8c5f5;
+
+    border-radius: 14px;
+}
+
+.opciones-cuotas label {
+    display: block;
+    margin-bottom: 8px;
+    color: #5b3b8c;
+    font-weight: bold;
+}
+
+.opciones-cuotas select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #d8c5f5;
+    border-radius: 9px;
+    background-color: white;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.opciones-cuotas select:focus {
+    border-color: #8e63c7;
+
+    box-shadow:
+        0 0 0 3px rgba(142, 99, 199, 0.12);
+}
+
+#valor-cuota {
+    margin-top: 12px;
+    color: #5b3b8c;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#btn-generar-comprobante {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #2d6a4f,
+        #40916f
+    );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 14px rgba(45, 106, 79, 0.25);
+    
+    transition: all 0.25s ease;
+}
+
+#btn-generar-comprobante:hover {
+    background: linear-gradient(
+        135deg,
+        #1b4332,
+        #2d6a4f
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(45, 106, 79, 0.32);
+}
+
+#btn-generar-comprobante:active {
+    transform: translateY(0);
+}
+
+/*Responsive medios de pago*/
+
+@media (max-width: 700px) {
+
+    .datos-tarjeta {
+        padding: 20px;
+    }
+
+    .tarjeta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .encabezado-pago {
+        align-items: flex-start;
+    }
+
+    .mensaje-pago {
+        align-items: flex-start;
+    }
+
+    .icono-mensaje {
+        width: 45px;
+        height: 45px;
+    }
+}
+

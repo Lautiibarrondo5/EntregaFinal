@@ -22,13 +22,19 @@
         <div class="contenedor-header">
 
             <div class="logo-header">
-                <img src="assets\img-logo-gamezone..jpeg" alt="Logo GameZone">
-                <p>Encontrá tus videojuegos favoritos.</p>
-            </div>
 
-            <div class="resumen-carrito">
-                🛒 Carrito:
-                <span id="cantidad-carrito">0</span>
+                <img src="assets/img-logo-gamezone..jpeg" alt="Logo Gamezone">
+
+                <div class="contenido-logo">
+                    <h1>GameZone</h1>
+                    <p>Encontrá tus videojuegos favoritos.</p>
+                </div>
+
+                <button type="button" class="resumen-carrito" id="btn-ir-carrito">
+                    🛒 Carrito:
+                    <span id="cantidad-carrito">0</span>
+                </button>
+
             </div>
 
         </div>
@@ -208,60 +214,116 @@
 
                 <div class="datos-pago">
 
-                    <div>
-                        <label for="metodo-pago">
-                            Método de pago 
-                        </label>
+                    <div class="metodo-pago-contenedor">
+                        <label for="metodo-pago">💳 Método de pago</label>
 
                         <select id="metodo-pago" required>
-                            <option value="">
-                                Seleccioná un método 
-                            </option>
-
-                            <option value="Tarjeta de crédito">
-                                💳 Tarjeta de crédito 
-                            </option>
-
-                            <option value="Tarjeta de débito">
-                                💳 Tarjeta de débito
-                            </option>
-
-                            <option value="Transferencia">
-                                🏦 Transferencia bancaria
-                            </option>
-
-                            <option value="Efectivo">
-                                💵 Efectivo 
-                            </option>
+                            <option value="">Seleccioná un método</option>
+                            <option value="Tarjeta de crédito">💳 Tarjeta de crédito</option>
+                            <option value="Tarjeta de débito">💳  Tarjeta de débito</option>
+                            <option value="Transferencia">🏦 Transferencia bancaria</option>
+                            <option value="Efectivo">💵 Efectivo</option>
                         </select>
+
                     </div>
 
                 </div>
 
+                <div id="datos-tarjeta" class="datos-tarjeta" hidden>
+
+                    <div class="encabezado-pago">
+                        <div class="icono-pago">💳</div>
+                        <div>
+                            <h3>Datos de tu tarjeta</h3>
+                            <p>Completá los datos para continuar con la compra.</p>
+                        </div>
+                    </div>
+
+                    <div class="campo-tarjeta campo-completo">
+                        <label for="numero-tarjeta">Número de tarjeta</label>
+                        <input 
+                            type="text"
+                            id="numero-tarjeta"
+                            placeholder="0000 0000 0000 0000"
+                            inputmode="numeric"
+                            maxlength="19"
+                        >
+                    </div>
+
+                    <div class="campo-tarjeta campo-completo">
+                        <label for="nombre-titular">Nombre del titular</label>
+                        <input 
+                            type="text"
+                            id="nombre-titular"
+                            placeholder="Nombre y apellido"
+                        >
+                    </div>
+
+                    <div class="campo-tarjeta">
+                        <label for="vencimiento">vencimiento</label>
+                        <input
+                           type="text"
+                           id="vencimiento"
+                           placeholder="MM/AA"
+                           maxlength="5"
+                           inputmode="numeric"
+                        >
+                    </div>
+
+                    <div class="campo-tarjeta">
+                        <label for="cvv">CVV</label>
+                        <input
+                            type="password"
+                            id="cvv"
+                            placeholder="123"
+                            maxlength="4"
+                            inputmode="numeric"
+                        >
+                    </div>
+
+                    <div class="aviso-seguridad">
+                        🔒 <span>Datos de pago simulados para esta demostración.</span>
+                    </div>
+
+                </div>
+
+                <div id="datos-transferencia" class="mensaje-pago Transferencia" hidden>
+
+                    <div class="icono-mensaje">🏦</div>
+
+                    <div>
+                        <h3>Transferencia bancaria</h3>
+                        <p>
+                            Realizá la Transferencia utilizando los datos que aparecerán 
+                            al confirmar la compra.
+                        </p>
+                        <strong>Alias: GAMEZONE.PAGOS</strong>
+                    </div>
+
+                </div>
+
+                <div id="datos-efectivo" class="mensaje-pago efectivo" hidden>
+
+                    <div class="icono-mensaje">💵</div>
+
+                    <div>
+                        <h3>Pago en efectivo</h3>
+                        <p>
+                            Seleccionaste pagar en efectivo. El pago quedará registrado
+                            como pendiente de confirmación.
+                        </p>
+                    </div>
+                </div>
+
                 <div id="opciones-cuotas" class="opciones-cuotas" hidden>
 
-                    <label for="cuotas">
-                        Cantidad de cuotas 
-                    </label>
+                    <label for="cuotas">📆 Cantidad de cuotas</label>
 
                     <select id="cuotas">
-
-                        <option value="1">
-                            1 cuota 
-                        </option>
-
-                        <option value="3">
-                            3 cuotas 
-                        </option>
-
-                        <option value="6">
-                            6 cuotas 
-                        </option>
-
-                        <option value="12">
-                            12 cuotas 
-                        </option>
-
+                        <option value="1">1 cuota</option>
+                        <option value="3">3 cuotas</option>
+                        <option value="6">6 cuotas</option>
+                        <option value="12">12 cuotas</option>
                     </select>
 
                     <p id="valor-cuota"></p>

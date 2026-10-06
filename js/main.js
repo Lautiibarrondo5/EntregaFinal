@@ -67,7 +67,7 @@ async function cargarVideojuegos() {
 
 // Detalles de juegos
 function mostrarDetalles(id) {
-    
+
     const videojuego = videojuegos.find(
         (producto) => producto.id === id 
     );
@@ -88,60 +88,60 @@ function mostrarDetalles(id) {
     } = videojuego;
 
     const precioFinal = oferta 
-       ? precio - (precio * descuento / 100)
-       : precio;
+        ? precio - (precio * descuento / 100)
+        : precio;
 
     contenidoModalDetalles.innerHTML = `
-        <img
-            src="${imagen}"
-            alt="Portada de ${nombre}"
-            class="imagen-detalles"
-            >
+         <img 
+             src="${imagen}"
+             alt="Portada de ${nombre}"
+             class="imagen-detalles"
+          >
 
-        <h2>${nombre}</h2>
+          <h2>${nombre}</h2>
 
-        <p>
-           <strong>Categoría:</strong> ${categoria}
-        </p>
+          <p>
+             <strong>Categoría:</strong> ${categoria}
+          </p>
 
-        <p>
-           <strong>Plataforma:</strong> ${plataforma}
-        </p>
+          <p>
+             <strong>Plataforma:</strong> ${plataforma}
+          </p>
 
-        <p>
-           <strong>Descripción:</strong>
-           ${descripcion}
-        </p>
+          <p>
+             <strong>Descripción:</strong>
+             ${descripcion}
+          </p>
 
-        ${
-            oferta
-                ? `
-                   <p class="precio-anterior">
+          ${
+            oferta 
+               ? `
+                <p class="precio-anterior">
+                $${precio.toLocaleString("es-AR")}
+                </p>   
+
+                <p class="precio">
+                $${precioFinal.toLocaleString("es-AR")}
+                </p>
+
+                <span class="etiqueta-oferta">
+                     🔥 OFERTA -${descuento}%
+                </span>
+            `
+            : `
+               <p class="precio">
                    $${precio.toLocaleString("es-AR")}
-                   </p>
-
-                   <p class="precio">
-                    $${precioFinal.toLocaleString("es-AR")}
-                   </p>
-
-                   <span class="etiqueta-oferta>
-                        🔥 OFERTA -${descuento}$
-                   </span>
-                `
-                : `
-                   <p class="precio">
-                        $${precio.toLocaleString("es-AR")}
-                   </p>
-                `
-        }
+               </p>
+            `
+          }
 
         <button
              type="button"
              class="btn-agregar"
              data-id="${id}"
         >
-           🛒 Agregar al carrito
-        </button>
+            🛒  Agregar al carrito
+        </button>  
     `;
 
     modalDetalles.hidden = false;
@@ -347,6 +347,39 @@ contenedorVideojuegos.addEventListener("click", (evento) => {
         }
     }
 
+});
+
+contenedorOfertas.addEventListener("click", (evento) => {
+    if (evento.target.classList.contains("btn-agregar")) {
+        const id = Number(evento.target.dataset.id);
+
+        const videojuego = videojuegos.find(
+            (producto) => producto.id === id 
+        );
+
+        if (videojuego) {
+            agregarProductoAlCarrito(videojuego);
+        }
+    }
+});
+
+modalDetalles.addEventListener("click", (evento) => {
+
+    if (evento.target.classList.contains("btn-agregar")){
+
+        const id = Number(evento.target.dataset.id);
+
+        const videojuego = videojuegos.find(
+            (producto) => producto.id === id  
+        );
+
+        if (videojuego) {
+
+            agregarProductoAlCarrito(videojuego);
+
+            modalDetalles.hidden = true;
+        }
+    }
 });
 
 btnCerrarDetalles.addEventListener("click", () => {

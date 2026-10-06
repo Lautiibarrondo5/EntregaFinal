@@ -7,6 +7,7 @@ const totalCarrito = document.getElementById("total-carrito");
 const cantidadCarrito = document.getElementById("cantidad-carrito");
 const btnVaciarCarrito = document.getElementById("btn-vaciar-carrito");
 const btnConfirmarCompra = document.getElementById("btn-confirmar-compra");
+const btnIrCarrito = document.getElementById("btn-ir-carrito");
 
 const seccionComprobante = document.getElementById("seccion-comprobante");
 const formularioCompra = document.getElementById("formulario-compra");
@@ -694,6 +695,15 @@ formularioCompra.addEventListener("submit", (evento) => {
         position: "right"
     }).showToast();
 
+});
+
+btnIrCarrito.addEventListener("click", () => {
+
+    const carritoSeccion = document.querySelector(".carrito");
+
+    carritoSeccion.scrollIntoView({
+        behavior: "smooth"
+    });
 });
 
 
