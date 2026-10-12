@@ -21,11 +21,18 @@ const opcionesCuotas = document.getElementById("opciones-cuotas");
 const cuotas = document.getElementById("cuotas");
 const valorCuota = document.getElementById("valor-cuota");
 
+const datosTarjeta = document.getElementById("datos-tarjeta");
+const numeroTarjeta = document.getElementById("numero-tarjeta");
+const nombreTitular = document.getElementById("nombre-titular");
+const vencimiento = document.getElementById("vencimiento");
+const cvv = document.getElementById("cvv");
+
+const datosTransferencia = document.getElementById("datos-transferencia");
+const datosEfectivo = document.getElementById("datos-efectivo");
+
 
 function actualizarCuotas() {
-
     if (metodoPago.value === "Tarjeta de crédito") {
-
         opcionesCuotas.hidden = false;
 
         const cantidadCuotas = Number(cuotas.value);
@@ -33,26 +40,58 @@ function actualizarCuotas() {
         const total = carrito.reduce(
             (acumulado, producto) => 
                 acumulado + producto.precio * producto.cantidad,
-            0         
+            0                 
         );
 
         const valor = total / cantidadCuotas;
 
-        valorCuota.textContent =
+        valorCuota.textContent = 
              `${cantidadCuotas} cuota${cantidadCuotas > 1 ? "s" : ""} de $${valor.toLocaleString("es-AR")}`;
-
     } else {
-
         opcionesCuotas.hidden = true;
-
         valorCuota.textContent = "";
     }
 }
 
-metodoPago.addEventListener("change", actualizarCuotas);
+function actualizarMetodoPago() {
+    const metodoSeleccionado = metodoPago.value;
+
+    const esTarjeta = 
+        metodoSeleccionado === "Tarjeta de crédito" ||
+        metodoSeleccionado === "Tarjeta de débito";
+
+    datosTarjeta.hidden = !esTarjeta;
+
+    datosTransferencia.hidden = 
+        metodoSeleccionado !== "Transferencia";
+
+    datosEfectivo.hidden = 
+        metodoSeleccionado !== "Efectivo";
+
+    //Datos obligatorios de la Tarjeta crédito o débito
+    numeroTarjeta.required = esTarjeta;
+    nombreTitular.required = esTarjeta;
+    vencimiento.required = esTarjeta;
+    cvv.required = esTarjeta;
+
+    //Validaciones básicas de los campos
+    numeroTarjeta.pattern = "[0-9]{13,19}";
+    vencimiento.pattern = "(0[1-9]1[0-2])/[0-9]{2}";
+    cvv.pattern = "[0-9]{3,4}";
+
+    numeroTarjeta.title = 
+         "Ingresá entre 13 y 19 dígitos, con espacios opcionales.";
+
+    vencimiento.title = "Usá el formato MM/AA.";
+
+    cvv.title = "Ingresá 3 o 4 dígitos.";
+
+    actualizarCuotas();
+}
+
+metodoPago.addEventListener("change", actualizarMetodoPago);
 
 cuotas.addEventListener("change", actualizarCuotas);
-
 
 // Guardar carrito en localStorage
 function guardarCarrito() {
@@ -63,7 +102,6 @@ function guardarCarrito() {
     );
 
 }
-
 
 // Agregar producto al carrito
 function agregarProductoAlCarrito(videojuego) {
@@ -235,6 +273,7 @@ function calcularTotal() {
         `$${total.toLocaleString("es-AR")}`;
 
     cantidadCarrito.textContent = cantidadTotal;
+    actualizarCuotas();
 
 }
 
@@ -519,6 +558,43 @@ formularioCompra.addEventListener("submit", (evento) => {
 
     evento.preventDefault();
 
+    const metodoSeleccionado = metodoPago.value;
+
+    const esTarjeta = 
+        metodoSeleccionado === "Tarjeta de crédito" ||
+        metodoSeleccionado === "Tarjeta de débito";
+
+        if (esTarjeta) {
+            const numeroLimpio = numeroTarjeta.value.replace(/\s/g, "");
+
+            if (!/^\d{13,19}$/.test(numeroLimpio)) {
+                numeroTarjeta.setCustomValidity(
+                    "Ingresá un número de tarjeta de entre 13 y 19 dígitos."
+                );
+                numeroTarjeta.reportValidity();
+                numeroTarjeta.setCustomValidity("");
+                return;
+            }
+
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(vencimiento.value)) {
+                vencimiento.setCustomValidity(
+                    "Ingresá el vencimiento con el formato MM/AA."
+                );
+                vencimiento.reportValidity();
+                vencimiento.setCustomValidity("");
+                return;
+            }
+
+            if (!/^\d{3,4}$/.test(cvv.value)) {
+                cvv.setCustomValidity(
+                    "El código de seguridad debe tener 3 o 4 dígitos."
+                );
+                cvv.reportValidity();
+                cvv.setCustomValidity("");
+                return;
+            }
+        }
+
     const nombre = document
         .getElementById("nombre-cliente")
         .value
@@ -528,8 +604,6 @@ formularioCompra.addEventListener("submit", (evento) => {
         .getElementById("apellido-cliente")
         .value
         .trim();
-
-    const metodoSeleccionado = metodoPago.value;
 
     const cantidadCuotas = 
         metodoSeleccionado === "Tarjeta de crédito"
@@ -686,6 +760,7 @@ formularioCompra.addEventListener("submit", (evento) => {
     renderizarCarrito();
 
     formularioCompra.reset();
+    actualizarMetodoPago();
 
 
     Toastify({
@@ -710,3 +785,4 @@ btnIrCarrito.addEventListener("click", () => {
 // Mostrar el carrito y las compras al cargar
 renderizarCarrito();
 mostrarMisCompras();
+actualizarMetodoPago();
