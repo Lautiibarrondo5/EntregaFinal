@@ -133,7 +133,7 @@
         "categoria": "Deportes",
         "plataforma":"PS5",
         "descripcion":"Juega como tus pilotos favoritos y compite en los 19 circuitos oficiales de la temporada en las categorías MXGP y MX2. Cada curva, cada salto y cada sección de la pista han sido recreados con una fidelidad sin precedentes para transportarte directamente al corazón de la temporada oficial.",
-        "imagen": "/assets/img/MXGP26.9bd90a9b-4be6-48e6-8d47-564e6f6e19f8"
+        "imagen": "/assets/img/MXGP26.9bd90a9b-4be6-48e6-8d47-564e6f6e19f8.jpeg"
     },
     {
         "id": 15,
@@ -142,7 +142,7 @@
         "categoria": "Deportes",
         "plataforma":"PS5",
         "descripcion":": Permite crear un MyPLAYER para vivir una historia de ascenso desde categorías formativas hasta la élite profesional.",
-        "imagen": "/assets/img/NBA 2K26.jpg"
+        "imagen": "./assets/img/NBA 2K26.jpg"
     },
     {
         "id": 16,
@@ -151,6 +151,6 @@
         "categoria": "Deportes",
         "plataforma":"PS3",
         "descripcion":"Utiliza el motor FOX Engine junto con el software 'Enlighten' para lograr iluminación global en tiempo real, compatibilidad con resolución 4K HDR y un mayor detalle en el césped y los estadios",
-        "imagen": "/assets/img/PES2019.jpg"
+        "imagen": "./assets/img/PES2019.jpg"
     }
 ]
