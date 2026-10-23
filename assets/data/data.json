@@ -6,7 +6,7 @@
         "categoria": "Deportes",
         "plataforma":"PS4",
         "descripcion": "Juega a tu manera con una experiencia de juego renovada impulsada por los comentarios de la comunidad, Desafíos en vivo de Mánager que aportan historias dinámicas a la nueva temporada, y Arquetipos inspirados en los Grandes del deporte.",
-        "imagen": "/assets/img/skysports-eafc-bellingham-musiala_6966794.jpg",
+        "imagen": "./assets/img/skysports-eafc-bellingham-musiala_6966794.jpg",
         "oferta": true,
         "descuento": 20
     },
@@ -17,7 +17,7 @@
         "categoria": "Acción",
         "plataforma": "PS4",
         "descripcion": "Explorá Los Santos en una aventura de mundo abierto llena de acción, misiones y actividades.",
-        "imagen": "/assets/img/GTA5.jpg",
+        "imagen": "./assets/img/GTA5.jpg",
         "oferta": false,
         "descuento": 0
     },
@@ -28,7 +28,7 @@
         "categoria": "Aventura",
         "plataforma":"PS3",
         "descripcion":"Minecraft es un juego formado por bloques, criaturas y comunidades. La elección es tuya: sobrevivir a la noche o crear una obra de arte. Pero, si te abruma tener que explorar un nuevo y vasto mundo por tu cuenta, ¡no temas! ¡Vamos a explorar de qué va Minecraft!",
-        "imagen": "/assets/img/Minecraft.jpeg",
+        "imagen": "./assets/img/Minecraft.jpeg",
         "oferta": true,
         "descuento": 15
     },
@@ -39,7 +39,7 @@
         "categoria": "Carreras",
         "plataforma":"PS4",
         "descripcion": "Esta simulador de F1 te sentir como va un auto en la vida real, disfruta de todos los circuitos del mundo, con los mejores autos y pilotos.",
-        "imagen": "/assets/img/F1 25.jpg",
+        "imagen": "./assets/img/F1 25.jpg",
         "oferta": false,
         "descuento": 0
     },
@@ -50,7 +50,7 @@
         "categoria": "Aventura",
         "plataforma":"PS4",
         "descripcion": "• Crash es un bandicoot marsupial que sufre una mutación genética por culpa del malvado científico Doctor Neo Cortex , • Crash logra escapar del laboratorio y emprende una aventura para detener los planos de dominación mundial de Cortex y rescatar a su novia Tawna",
-        "imagen": "/assets/img/crash.jpg"
+        "imagen": "./assets/img/crash.jpg"
     },
     {
        "id": 6,
@@ -59,7 +59,7 @@
         "categoria": "Carreras",
         "plataforma":"PS4",
         "descripcion": "Presenta una campaña de aventura, expediciones, carreras de exhibición y eventos multijugador online mediante juego cruzado",
-        "imagen": "/assets/img/forza-horizon5.jpg" 
+        "imagen": "./assets/img/forza-horizon5.jpg" 
     },
     {
         "id": 7,
@@ -68,7 +68,7 @@
         "categoria": "Acción",
         "plataforma":"PS3",
         "descripcion": "Kratos y Atreus emprenden un viaje por los nueve reinos mientras enfrentan nuevos desafios.",
-        "imagen": "/assets/img/god of war.jpg"
+        "imagen": "./assets/img/god of war.jpg"
     },
     {
         "id": 8,
@@ -77,7 +77,7 @@
         "categoria": "Acción",
         "plataforma":"PS4",
         "descripcion": "Rocket League es un videojuego de deportes de estilo arcade que mezcla el fútbol tradicional con la conducción de vehículos propulsados ​​por cohetes",
-        "imagen": "/assets/img/rocket-league.jpg"
+        "imagen": "./assets/img/rocket-league.jpg"
     },
     {
         "id": 9,
@@ -86,7 +86,7 @@
         "categoria": "Acción",
         "plataforma":"PS4",
         "descripcion":" : Controlas a Peter Parker y Miles Morales , alternando entre ambos de forma rápida para vivir sus historias personales y combatir el crimen.Te enfrentas a Kraven el Cazador , quien convierte la ciudad en su coto de caza, al peligroso Lagarto (Lizard) y al monstruoso Venom , cuyo simbionte afecta negativamente a Peter",
-        "imagen": "/assets/img/spider-man 2.jpg",
+        "imagen": "./assets/img/spider-man 2.jpg",
         "oferta": true,
         "descuento": 50
     },
@@ -97,7 +97,7 @@
         "categoria": "Acción",
         "plataforma":"PS5",
         "descripcion":"es un videojuego de disparos en primera persona del género battle royale, de acceso gratuito y desarrollado por Activision",
-        "imagen": "/assets/img/warzone.jpg"  
+        "imagen": "./assets/img/warzone.jpg"  
     },
     {
         "id": 11,
@@ -106,7 +106,7 @@
         "categoria": "Deportes",
         "plataforma":"PS3",
         "descripcion":"es un videojuego de simulación de carreras desarrollado por Codemasters , enfocado en ofrecer una experiencia de manejo realista, técnica y muy exigente dentro del mundo del rally",
-        "imagen": "/assets/img/DIRTRALLY.jpg"
+        "imagen": "./assets/img/DIRTRALLY.jpg"
     },
     {
         "id": 12,
@@ -115,7 +115,7 @@
         "categoria": "Deportes",
         "plataforma":"PS4",
         "descripcion":"Un nuevo modo de juego rápido de 5 contra 5 en canchas reducidas que reemplaza a Volta, disponible en Ultimate Team, Clubes y Carrera",
-        "imagen": "/assets/img/FC 25.jpg"
+        "imagen": "./assets/img/FC 25.jpg"
     },
     {
         "id": 13,
@@ -124,7 +124,7 @@
         "categoria": "Acción",
         "plataforma":"PS5",
         "descripcion":" : Se centra en Kronika , la Guardiana del Tiempo, quien busca reiniciar la línea temporal para restablecer el equilibrio después de que Raiden alterara el destino en entregas anteriores",
-        "imagen": "/assets/img/Mortal Kombat 11.jpg"
+        "imagen": "./assets/img/Mortal Kombat 11.jpg"
     },
     {
         "id": 14,
@@ -133,7 +133,7 @@
         "categoria": "Deportes",
         "plataforma":"PS5",
         "descripcion":"Juega como tus pilotos favoritos y compite en los 19 circuitos oficiales de la temporada en las categorías MXGP y MX2. Cada curva, cada salto y cada sección de la pista han sido recreados con una fidelidad sin precedentes para transportarte directamente al corazón de la temporada oficial.",
-        "imagen": "/assets/img/MXGP26.9bd90a9b-4be6-48e6-8d47-564e6f6e19f8.jpeg"
+        "imagen": "./assets/img/MXGP26.9bd90a9b-4be6-48e6-8d47-564e6f6e19f8.jpeg"
     },
     {
         "id": 15,

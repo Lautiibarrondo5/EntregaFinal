@@ -685,7 +685,16 @@ footer {
     }
 
     .logo-header {
-        min-height: 180px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .logo-header img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
     }
 
     .contenido-logo h1 {
@@ -713,7 +722,7 @@ footer {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2 ease;
+    transition: 0.2s ease;
  }
 
  #btn-limpiar-compras:hover {
@@ -1707,4 +1716,5 @@ header {
         text-align: center;
     }
 } 
+
 

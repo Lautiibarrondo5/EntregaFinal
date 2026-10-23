@@ -76,7 +76,7 @@ function actualizarMetodoPago() {
 
     //Validaciones básicas de los campos
     numeroTarjeta.pattern = "[0-9]{13,19}";
-    vencimiento.pattern = "(0[1-9]1[0-2])/[0-9]{2}";
+    vencimiento.pattern = "(0[1-9]|1[0-2])/[0-9]{2}";
     cvv.pattern = "[0-9]{3,4}";
 
     numeroTarjeta.title = 
@@ -669,7 +669,7 @@ formularioCompra.addEventListener("submit", (evento) => {
     comprobanteGenerado.innerHTML = `
         <div class="comprobante-contenido">
 
-            <h2>🎮 GameStore</h2>
+            <h2>🎮 GameZone</h2>
 
             <h3>🧾 Comprobante de compra</h3>
 

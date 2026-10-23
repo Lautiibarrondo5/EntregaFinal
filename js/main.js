@@ -223,6 +223,8 @@ function renderizarVideojuegos(lista) {
 
     videojuegosFiltrados = lista;
 
+    btnVerMas.style.display = lista.length > 4 ? "block" : "none";
+
     if (lista.length === 0) {
 
         contenedorVideojuegos.innerHTML = `
